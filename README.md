@@ -35,22 +35,8 @@ The app tracks **screen views** and **custom user events** such as creating/dele
 
 ---
 
-### 2️⃣ Add Firebase App
 
-#### For Android
-
-1. Register Android app
-2. Add package name (e.g. `com.example.firebase_analytics_app`)
-3. Download `google-services.json`
-4. Place it inside:
-
-```
-android/app/google-services.json
-```
-
----
-
-### 3️⃣ Install Required Packages
+### 2️⃣ Install Required Packages
 
 Run the following command:
 
@@ -60,7 +46,7 @@ flutter pub add firebase_core firebase_analytics
 
 ---
 
-### 4️⃣ Firebase Initialization
+### 3️⃣ Firebase Initialization
 
 Initialize Firebase before running the app:
 
