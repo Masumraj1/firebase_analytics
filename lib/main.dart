@@ -3,10 +3,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'analytics_services.dart';
 import 'todo_screen.dart';
 
+
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized(); 
+  try {
+    await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+    FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
+  } catch(e) {
+    print("Failed to initialize Firebase: $e");
+  }
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
