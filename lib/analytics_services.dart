@@ -1,0 +1,33 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+
+class AnalyticsService {
+  // Singleton pattern (পুরো অ্যাপে একটিমাত্র ইন্সট্যান্স থাকবে)
+  AnalyticsService._internal();
+  static final AnalyticsService instance = AnalyticsService._internal();
+
+  final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
+
+  // স্ক্রিন ট্র্যাকিংয়ের জন্য অবজারভার
+  FirebaseAnalyticsObserver get observer => FirebaseAnalyticsObserver(analytics: _analytics);
+
+  // টাস্ক অ্যাড ইভেন্ট
+  Future<void> logTaskAdded(String taskName) async {
+    await _analytics.logEvent(
+      name: 'todo_task_created',
+      parameters: {
+        'content': taskName,
+        'platform': 'flutter',
+      },
+    );
+  }
+
+  // টাস্ক ডিলিট ইভেন্ট
+  Future<void> logTaskDeleted(String taskName) async {
+    await _analytics.logEvent(
+      name: 'todo_task_removed',
+      parameters: {
+        'content': taskName,
+      },
+    );
+  }
+}
