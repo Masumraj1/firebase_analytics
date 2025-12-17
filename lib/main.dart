@@ -1,13 +1,14 @@
-import 'package:firebase_analytics_app/todo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'analytics_services.dart';
-
+import 'todo_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ফায়ারবেস ইনিশিয়ালাইজ করা
   await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -19,7 +20,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Professional Todo Analytics',
-      // প্রফেশনাল স্ক্রিন ট্র্যাকিং
+      theme: ThemeData(
+        useMaterial3: true,
+        primarySwatch: Colors.blue,
+      ),
+      // এই লাইনটি অটোমেটিক স্ক্রিন ট্র্যাক করবে
       navigatorObservers: [AnalyticsService.instance.observer],
       home: const TodoScreen(),
     );
