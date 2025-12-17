@@ -5,10 +5,7 @@ import 'todo_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // ফায়ারবেস ইনিশিয়ালাইজ করা
   await Firebase.initializeApp();
-
   runApp(const MyApp());
 }
 
@@ -19,13 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Professional Todo Analytics',
-      theme: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.blue,
-      ),
-      // এই লাইনটি অটোমেটিক স্ক্রিন ট্র্যাক করবে
-      navigatorObservers: [AnalyticsService.instance.observer],
+      title: 'Full Analytics App',
+      navigatorObservers: [
+        AnalyticsService.instance.observer, // ✅ Screen tracking
+      ],
       home: const TodoScreen(),
     );
   }
